@@ -1,4 +1,4 @@
-Docker手动创建并启动LNMP网站平台#1
+#Docker手动创建并启动LNMP网站平台#1
 
 创建docker容器组内部网络
     
@@ -19,24 +19,24 @@ Docker手动创建并启动LNMP网站平台#1
 创建并启动MySQL容器(MySQL8.0)
     
     # docker run -d -it \
---name lnmp_mysql \
---net lnmp \
--p 172.16.10.14:3306:3306 \
---mount src=mysql-vol,dst=/var/lib/mysql \
--e MYSQL_ROOT_PASSWORD=123456 \
-mysql --character-set-server=utf8 \
---default-authentication-plugin=mysql_native_password
+    --name lnmp_mysql \
+    --net lnmp \
+    -p 172.16.10.14:3306:3306 \
+    --mount src=mysql-vol,dst=/var/lib/mysql \
+    -e MYSQL_ROOT_PASSWORD=123456 \
+    mysql --character-set-server=utf8 \
+    --default-authentication-plugin=mysql_native_password
 
 
 创建并启动MySQL容器(MySQL5.6)
     
     # docker run -d -it \
---name lnmp_mysql \
---net lnmp \
--p 172.16.10.14:3306:3306 \
---mount src=mysql-vol,dst=/var/lib/mysql \
--e MYSQL_ROOT_PASSWORD=123456 \
-mysql5.6 --character-set-server=utf8
+    --name lnmp_mysql \
+    --net lnmp \
+    -p 172.16.10.14:3306:3306 \
+    --mount src=mysql-vol,dst=/var/lib/mysql \
+    -e MYSQL_ROOT_PASSWORD=123456 \
+    mysql5.6 --character-set-server=utf8
 
 
 连接通过MySQL容器创建的MySQL服务
@@ -55,10 +55,10 @@ mysql5.6 --character-set-server=utf8
 创建并启动PHP环境的容器
     
     # docker run -itd \
---name lnmp_web \
---net lnmp \
--p 172.16.10.14:80:80 \
---mount type=bind,src=/app/wwwroot,dst=/var/www/html richarvey/nginx-php-fpm
+    --name lnmp_web \
+    --net lnmp \
+    -p 172.16.10.14:80:80 \
+    --mount type=bind,src=/app/wwwroot,dst=/var/www/html richarvey/nginx-php-fpm
 
 
     # tar -zxf wordpress-4.9.5.tar.gz -C /app/wwwroot/
